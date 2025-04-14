@@ -1,6 +1,6 @@
-﻿using Demo.BusinessLogic.DTOs;
+﻿using Demo.BusinessLogic.DTOs.DepartmentDTOs;
 
-namespace Demo.BusinessLogic.Services
+namespace Demo.BusinessLogic.Services.Interfaces
 {
     public interface IDepartmentService
     {
@@ -8,5 +8,7 @@ namespace Demo.BusinessLogic.Services
         IEnumerable<DepartmentDto> GetAllDepartments();
         DepartmentDetailsDto? GetDepartmentById(int id);
         int UpdateDepartment(UpdateDepartmentDto updateDepartmentDto);
+        public bool DeleteDepartment(int id);
+
     }
 }

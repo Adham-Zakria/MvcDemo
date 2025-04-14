@@ -1,16 +1,16 @@
-﻿using Demo.DataAccess.Models;
+﻿using Demo.DataAccess.Models.DepartmentModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Demo.BusinessLogic.DTOs
+namespace Demo.BusinessLogic.DTOs.DepartmentDTOs
 {
     public class DepartmentDetailsDto : DepartmentDto
     {
         public DepartmentDetailsDto() { }
-        
+
         public DepartmentDetailsDto(Department department)
         {
             DeptId = department.Id;
@@ -21,7 +21,7 @@ namespace Demo.BusinessLogic.DTOs
             CreatedBy = department.CreatedBy;
             LastModifiedBy = department.LastModifiedBy;
             IsDeleted = department.IsDeleted;
-            LastModifiedOn= department.LastModifiedOn;
+            LastModifiedOn = department.LastModifiedOn;
         }   // constructor mapping (Manual mapping)
 
         public int CreatedBy { get; set; }

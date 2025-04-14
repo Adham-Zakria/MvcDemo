@@ -1,13 +1,14 @@
-﻿using Demo.BusinessLogic.DTOs;
+﻿using Demo.BusinessLogic.DTOs.DepartmentDTOs;
 using Demo.BusinessLogic.Factories;
-using Demo.DataAccess.Repositories;
+using Demo.BusinessLogic.Services.Interfaces;
+using Demo.DataAccess.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Demo.BusinessLogic.Services
+namespace Demo.BusinessLogic.Services.Classes
 {
     public class DepartmentService : IDepartmentService
     {
@@ -83,6 +84,17 @@ namespace Demo.BusinessLogic.Services
         {
             var res = _departmentRepository.Update(updateDepartmentDto.ToEntity());
             return res;
+        }
+
+        public bool DeleteDepartment(int id)
+        {
+            var department = _departmentRepository.GetById(id);
+            if (department is null) return false;
+            else
+            {
+                int res = _departmentRepository.Remove(department);
+                return res > 0 ? true : false;
+            }
         }
     }
 }

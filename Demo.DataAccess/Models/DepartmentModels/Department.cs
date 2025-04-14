@@ -3,17 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Demo.DataAccess.Models.SharedModels;
 
-namespace Demo.BusinessLogic.DTOs
+namespace Demo.DataAccess.Models.DepartmentModels
 {
-    public class DepartmentDto
+    public class Department : BaseEntity
     {
-        public int DeptId { get; set; }
         public string Name { get; set; } = null!;
         public string Code { get; set; } = null!;
-
         public string? Description { get; set; }
-        public DateTime? DateOfCreation { get; set; }
 
     }
 }

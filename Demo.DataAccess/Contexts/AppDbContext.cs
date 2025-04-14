@@ -4,6 +4,8 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using Demo.DataAccess.Models.DepartmentModels;
+using Demo.DataAccess.Models.EmployeeModels;
 
 namespace Demo.DataAccess.Contexts
 {
@@ -25,5 +27,7 @@ namespace Demo.DataAccess.Contexts
         }
 
         public DbSet<Department> Departments { get; set; }
+        public DbSet<Employee> Employees { get; set; }
+
     }
 }

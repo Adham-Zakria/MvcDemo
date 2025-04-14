@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Demo.DataAccess.Models.DepartmentModels;
 
 namespace Demo.DataAccess.Data.Configurations
 {
-    internal class DepartmentComfiguration : IEntityTypeConfiguration<Department>
+    internal class DepartmentComfiguration : BaseEntityConfiguration<Department>,IEntityTypeConfiguration<Department>
     {
-        public void Configure(EntityTypeBuilder<Department> builder)
+        public new void Configure(EntityTypeBuilder<Department> builder)
         {
             builder.Property(dept=>dept.Id)
                 .UseIdentityColumn(10,10);
@@ -19,18 +20,7 @@ namespace Demo.DataAccess.Data.Configurations
             builder.Property(dept => dept.Code)
                 .HasColumnType("varchar(20)");
 
-            builder.Property(dept=> dept.CreatedOn).HasDefaultValueSql("GETDATE()");
-            // if the row is inserted without value , the default value will be used
-            // on insert
-            // can't reference other column
-            // can be overriden
-
-            builder.Property(dept => dept.LastModifiedOn).HasComputedColumnSql("GETDATE()");
-            // value is computed every time the record changed 
-            // on update
-            // can reference other column
-
-
+            base.Configure(builder);  // BaseEntityConfiguration
 
         }
     }
