@@ -46,6 +46,10 @@
             <input asp-for="Salary" class="form-control" />
             <span asp-validation-for="Salary" class="text-danger"></span>
         </div>
+
+        @* HERE *@
+        <partial name="PartialViews/CreateEditPartialView" />
+
         <div class="form-group mb-3 col-6">
             <input asp-for="IsActive" class="form-check-input" />
             <label class="col-form-label" asp-for="IsActive"></label>
@@ -53,11 +57,10 @@
 
         <div class="form-group mb-3 col-6">
             <label class="form-label" asp-for="EmployeeType"></label>
-            <select asp-for="EmployeeType" asp-items="@Html.GetEnumSelectList<EmployeeType>()">
+            <select asp-for="EmployeeType" asp-items="@Html.GetEnumSelectList<EmployeeType>()" class="form-control">
                 <option value="">Select Employee Type</option>
             </select>
         </div>
-
 
         <div class="form-group mb-3 col-6">
             <label class="form-label" asp-for="Gender"></label>
@@ -82,4 +85,10 @@
         </div>
     </form>
 </div>
+
+
+@section ValidationScripts {
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}
 

@@ -4,6 +4,7 @@ using Demo.BusinessLogic.Services.Interfaces;
 using Demo.DataAccess.Contexts;
 using Demo.DataAccess.Repositories.Classes;
 using Demo.DataAccess.Repositories.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 
@@ -18,7 +19,11 @@ namespace Demo.Presentation
 
             #region Add services to the container
 
-            builder.Services.AddControllersWithViews();
+            builder.Services.AddControllersWithViews(options =>
+            {
+                options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
+            });
+
             builder.Services.AddDbContext<AppDbContext>(options =>
             {
                 options.UseSqlServer(builder.Configuration["ConnectionStrings:DefaultConnection"]);

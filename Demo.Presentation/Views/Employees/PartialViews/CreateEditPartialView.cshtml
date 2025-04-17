@@ -1,0 +1,11 @@
+﻿@model EmployeeEditViewModel
+@{
+    var Departments = new SelectList(ViewData["Departments"] as IEnumerable<DepartmentDto> ,
+    nameof(DepartmentDto.DeptId) , nameof(DepartmentDto.Name));
+}
+<div class="form-group mb-3 col-6">
+    <label class="form-label" asp-for="DepartmentId"></label>
+    <select asp-for="DepartmentId" asp-items="Departments" class="form-control">
+        <option value="">Select Department</option>
+    </select>
+</div>

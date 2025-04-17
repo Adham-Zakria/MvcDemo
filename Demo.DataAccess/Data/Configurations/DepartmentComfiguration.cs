@@ -20,6 +20,11 @@ namespace Demo.DataAccess.Data.Configurations
             builder.Property(dept => dept.Code)
                 .HasColumnType("varchar(20)");
 
+            builder.HasMany(dept => dept.Employees)
+                .WithOne(emp=>emp.Department)
+                .HasForeignKey(emp=>emp.DepartmentId)
+                .OnDelete(DeleteBehavior.SetNull);
+
             base.Configure(builder);  // BaseEntityConfiguration
 
         }

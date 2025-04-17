@@ -13,6 +13,9 @@ namespace Demo.Presentation.Controllers
     {
         public IActionResult Index()
         {
+            //ViewData["Message01"] = " Hi from department's index => ViewData ";
+            //ViewBag.Message02 = " Hi from department's index => ViewBag ";
+
             var departments = _departmentService.GetAllDepartments();
             return View(departments);
         }
@@ -34,11 +37,16 @@ namespace Demo.Presentation.Controllers
                 try
                 {
                     int res = _departmentService.CreateDepartment(createDepartmentDto);
-                    if (res > 0) return RedirectToAction(nameof(Index)); // back to list 
+                    var message = string.Empty;
+                    if (res > 0) 
+                        message = "Department created successfully";
                     else
-                    {
-                        ModelState.AddModelError(string.Empty, "Department can't be created");
-                    }
+                        message = "Department can't be created";
+                    
+                    ViewData["SpecialMsg01"] = message;
+                    TempData["SpecialMsg02"] = message;
+
+                    return RedirectToAction(nameof(Index)); // back to list 
                 }
                 catch (Exception ex)
                 {
@@ -100,6 +108,7 @@ namespace Demo.Presentation.Controllers
             }
         }
 
+        [ValidateAntiForgeryToken]
         [HttpPost]
         public IActionResult Edit([FromRoute]int id , DepartmentEditViewModel departmentEditViewModel) 
         {

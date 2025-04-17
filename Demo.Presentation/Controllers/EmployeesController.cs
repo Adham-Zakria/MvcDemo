@@ -21,8 +21,9 @@ namespace Demo.Presentation.Controllers
         #region Create Employee
 
         [HttpGet]
-        public IActionResult Create()
+        public IActionResult Create([FromServices]IDepartmentService _departmentService) //injection to use the department service in this action
         {
+            ViewData["Departments"]= _departmentService.GetAllDepartments(); // to pass the department's data (used in CreateEditPartialView)
             return View();
         }
 
@@ -79,7 +80,7 @@ namespace Demo.Presentation.Controllers
         #region Edit Employee
 
         [HttpGet]
-        public IActionResult Edit(int? id)
+        public IActionResult Edit(int? id , [FromServices] IDepartmentService _departmentService)
         {
             if (!id.HasValue) return BadRequest();
             var employee = _employeeService.GetEmployeeById(id.Value);
@@ -99,8 +100,11 @@ namespace Demo.Presentation.Controllers
                     Email = employee.Email,
                     Age=(int)employee.Age,
                     HiringDate = employee.HiringDate,
-                    Address=employee.Address
+                    Address=employee.Address,
+                    DepartmentId = employee.DepartmentId,
                 };
+
+                ViewData["Departments"] = _departmentService.GetAllDepartments();
                 return View(employeeViewModel);
             }
         }
@@ -124,6 +128,7 @@ namespace Demo.Presentation.Controllers
                     Address= employeeEditViewModel.Address,
                     EmployeeType=employeeEditViewModel.EmployeeType,
                     Gender= employeeEditViewModel.Gender,
+                    DepartmentId= employeeEditViewModel.DepartmentId,
                 };
                 var res = _employeeService.UpdateEmployee(updatedEmp);
 

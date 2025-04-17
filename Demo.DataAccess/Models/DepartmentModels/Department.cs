@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Demo.DataAccess.Models.EmployeeModels;
 using Demo.DataAccess.Models.SharedModels;
 
 namespace Demo.DataAccess.Models.DepartmentModels
@@ -12,6 +13,7 @@ namespace Demo.DataAccess.Models.DepartmentModels
         public string Name { get; set; } = null!;
         public string Code { get; set; } = null!;
         public string? Description { get; set; }
+        public virtual ICollection<Employee> Employees { get; set; } =new HashSet<Employee>();
 
     }
 }

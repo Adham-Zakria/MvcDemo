@@ -16,7 +16,8 @@ namespace Demo.DataAccess.Contexts
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-           // optionsBuilder.UseSqlServer("ConnectionString");
+            // optionsBuilder.UseSqlServer("ConnectionString");
+            optionsBuilder.UseLazyLoadingProxies();
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

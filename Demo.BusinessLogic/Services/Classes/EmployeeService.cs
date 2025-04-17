@@ -18,7 +18,7 @@ namespace Demo.BusinessLogic.Services.Classes
         public IEnumerable<GetEmployeeDto> GetAllEmployees()
         {
             var employees = _employeeRepository.GetAll();
-            
+
             // mapping from IEnumerable<Employee> to IEnumerable<GetEmployeeDto>
             var employeesDtos = _mapper.Map<IEnumerable<GetEmployeeDto>>( employees );
             return employeesDtos;
