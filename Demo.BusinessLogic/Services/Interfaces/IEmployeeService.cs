@@ -10,8 +10,7 @@ namespace Demo.BusinessLogic.Services.Interfaces
 {
     public interface IEmployeeService
     {
-        IEnumerable<GetEmployeeDto> GetAllEmployees();
-
+        IEnumerable<GetEmployeeDto> GetAllEmployees(string? EmployeeSearchName);
         int CreateEmployee(CreateEmployeeDto createEmployeeDto);
         EmployeeDetailsDto? GetEmployeeById(int id);
         int UpdateEmployee(UpdateEmployeeDto updateEmployeeDto);

@@ -12,9 +12,9 @@ namespace Demo.Presentation.Controllers
         ILogger<EmployeesController> _logger,
         IWebHostEnvironment _environment ) : Controller
     {
-        public IActionResult Index()
+        public IActionResult Index(string? EmployeeSearchName)
         {
-            var employees=_employeeService.GetAllEmployees();
+            var employees=_employeeService.GetAllEmployees(EmployeeSearchName);
             return View(employees);
         }
 
@@ -129,6 +129,7 @@ namespace Demo.Presentation.Controllers
                     EmployeeType=employeeEditViewModel.EmployeeType,
                     Gender= employeeEditViewModel.Gender,
                     DepartmentId= employeeEditViewModel.DepartmentId,
+                    Image= employeeEditViewModel.Image,
                 };
                 var res = _employeeService.UpdateEmployee(updatedEmp);
 
