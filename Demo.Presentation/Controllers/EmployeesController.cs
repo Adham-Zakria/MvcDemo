@@ -1,13 +1,14 @@
 ﻿using Demo.BusinessLogic.DTOs.EmployeeDTOs;
-using Demo.BusinessLogic.Services.Classes;
 using Demo.BusinessLogic.Services.Interfaces;
 using Demo.DataAccess.Models.EmployeeModels;
 using Demo.DataAccess.Models.SharedModels;
 using Demo.Presentation.ViewModels.EmployeeViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Demo.Presentation.Controllers
 {
+    [Authorize]
     public class EmployeesController(IEmployeeService _employeeService ,
         ILogger<EmployeesController> _logger,
         IWebHostEnvironment _environment ) : Controller

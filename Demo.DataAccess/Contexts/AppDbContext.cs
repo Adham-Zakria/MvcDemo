@@ -6,10 +6,12 @@ using System.Text;
 using System.Threading.Tasks;
 using Demo.DataAccess.Models.DepartmentModels;
 using Demo.DataAccess.Models.EmployeeModels;
+using Demo.DataAccess.Models.IdentityModels;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace Demo.DataAccess.Contexts
 {
-    public class AppDbContext : DbContext
+    public class AppDbContext : IdentityDbContext<ApplicationUser>
     {
         public AppDbContext(DbContextOptions<AppDbContext> options):base(options) 
         {
@@ -17,14 +19,14 @@ namespace Demo.DataAccess.Contexts
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             // optionsBuilder.UseSqlServer("ConnectionString");
-            optionsBuilder.UseLazyLoadingProxies();
+           // optionsBuilder.UseLazyLoadingProxies();
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
             //modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
-
+            base.OnModelCreating(modelBuilder);
         }
 
         public DbSet<Department> Departments { get; set; }
